@@ -5,7 +5,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { images } from "@/libs/data"; // Asegúrate de que la ruta de importación sea correcta
 
-// Definición de la interfaz para cada imagen
 interface ImageData {
     id: number;
     title: string;
@@ -15,19 +14,17 @@ interface ImageData {
     location?: string;
     gallery?: string[];
     price?: number;
-    discount?: number; // Nuevo campo para el descuento
-    expirationDate?: string; // Fecha de vencimiento
+    discount?: number;
+    expirationDate?: string;
 }
 
 export default function EventoDetalle({ params }: { params: { id: string } }) {
     const [isRegistered, setIsRegistered] = useState(false);
-    const [showForm, setShowForm] = useState(false); // Estado para mostrar el formulario
-    const [cartItems, setCartItems] = useState<ImageData[]>([]); // Estado para el carrito de compras
+    const [showForm, setShowForm] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
     });
 
-    // Buscar la imagen correspondiente por su ID
     const image: ImageData | undefined = images.find((item) => item.id.toString() === params.id);
 
     if (!image) {
@@ -38,15 +35,7 @@ export default function EventoDetalle({ params }: { params: { id: string } }) {
 
     const handleRegistration = () => {
         setIsRegistered(true);
-        setShowForm(true); // Mostrar el formulario al registrarse
-    };
-
-    
-
-    const removeFromCart = (index: number) => {
-        const newCartItems = [...cartItems];
-        newCartItems.splice(index, 1);
-        setCartItems(newCartItems);
+        setShowForm(true);
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,7 +52,7 @@ export default function EventoDetalle({ params }: { params: { id: string } }) {
         try {
             await submitForm();
             resetForm();
-            setShowForm(false); // Ocultar el formulario después de enviar
+            setShowForm(false);
             alert('Producto registrado exitosamente.');
         } catch (error) {
             console.error('Error al registrar producto:', error);
@@ -81,7 +70,7 @@ export default function EventoDetalle({ params }: { params: { id: string } }) {
 
     const submitForm = async () => {
         console.log('Datos del formulario:', formData);
-        await registrarProducto(formData);
+        // Lógica para registrar el producto, aún no implementada
     };
 
     const resetForm = () => {
@@ -149,6 +138,3 @@ export default function EventoDetalle({ params }: { params: { id: string } }) {
     );
 }
 
-function registrarProducto(formData: { name: string }) {
-    throw new Error('Function not implemented.');
-}
