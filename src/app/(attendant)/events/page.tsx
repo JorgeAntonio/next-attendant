@@ -1,7 +1,6 @@
 
 import React from 'react';
-import Input from '../../../components/Input'; // Importa el componente Input desde la ubicación correcta
-import Image from 'next/image'; // Importa el componente Image desde next/image
+import Input from '../../../components/Input';
 
 export default function EventsPage() {
     return (
