@@ -9,7 +9,7 @@ export default function HomePage() {
         <div className='container mx-auto p-4'>
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
                 {images.map((image, index) => (
-                    <ImageCard key={index} id={image.id.toString()} img={image.img} title={image.title} description={image.description} />
+                    <ImageCard key={index} id={image.id.toString()} img={image.image} title={image.title} description={image.description} />
                 ))}
             </div>
         </div>
